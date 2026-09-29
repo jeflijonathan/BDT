@@ -1,5 +1,6 @@
 services:
   minio1:
+    container_name: minio1
     image: quay.io/minio/minio:latest
     restart: unless-stopped
 
@@ -12,7 +13,7 @@ services:
       MINIO_ROOT_PASSWORD: secretsecret
 
     volumes:
-      - minio1_data:/data
+      - ./minio1:/data
 
     command: >
       server
@@ -26,6 +27,7 @@ services:
       - docker_network
 
   minio2:
+    container_name: minio2
     image: quay.io/minio/minio:latest
     restart: unless-stopped
 
@@ -34,7 +36,7 @@ services:
       MINIO_ROOT_PASSWORD: secretsecret
 
     volumes:
-      - minio2_data:/data
+      - ./minio2:/data
 
     command: >
       server
@@ -48,6 +50,7 @@ services:
       - docker_network
 
   minio3:
+    container_name: minio3
     image: quay.io/minio/minio:latest
     restart: unless-stopped
 
@@ -56,7 +59,7 @@ services:
       MINIO_ROOT_PASSWORD: secretsecret
 
     volumes:
-      - minio3_data:/data
+      - ./minio3:/data
 
     command: >
       server
@@ -70,6 +73,7 @@ services:
       - docker_network
 
   minio4:
+    container_name: minio4
     image: quay.io/minio/minio:latest
     restart: unless-stopped
 
@@ -78,7 +82,7 @@ services:
       MINIO_ROOT_PASSWORD: secretsecret
 
     volumes:
-      - minio4_data:/data
+      - ./minio4:/data
 
     command: >
       server

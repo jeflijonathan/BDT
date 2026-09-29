@@ -1,0 +1,36 @@
+{
+  "ingest_timestamp": "2026-09-12T10:45:00Z",
+  "source_system": "ecommerce_api_v1",
+  "batch_id": "batch_20260912_01",
+  "payload": [
+    {
+      "transaction_id": "TRX-88901",
+      "customer": {
+        "cust_id": "C-0192",
+        "full_name": " Andi Pratama ",
+        "city": "Jakarta"
+      },
+      "items": [
+        {"product_id": "P-101", "qty": 2, "unit_price": 150000},
+        {"product_id": "P-205", "qty": 1, "unit_price": 350000}
+      ],
+      "total_paid": 650000,
+      "status": "SUCCESS",
+      "notes": "  "
+    },
+    {
+      "transaction_id": "TRX-88902",
+      "customer": {
+        "cust_id": "C-0481",
+        "full_name": "Siti Rahma",
+        "city": "Bandung"
+      },
+      "items": [
+        {"product_id": "P-102", "qty": 1, "unit_price": 750000}
+      ],
+      "total_paid": 750000,
+      "status": "PENDING",
+      "notes": "mohon dikirim cepat"
+    }
+  ]
+}
