@@ -3,18 +3,14 @@ services:
     container_name: minio1
     image: quay.io/minio/minio:latest
     restart: unless-stopped
-
     ports:
       - "9000:9000"
       - "9001:9001"
-
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: secretsecret
-
     volumes:
       - ./minio1:/data
-
     command: >
       server
       http://minio1/data
@@ -22,7 +18,6 @@ services:
       http://minio3/data
       http://minio4/data
       --console-address ":9001"
-
     networks:
       - docker_network
 
@@ -30,14 +25,11 @@ services:
     container_name: minio2
     image: quay.io/minio/minio:latest
     restart: unless-stopped
-
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: secretsecret
-
     volumes:
       - ./minio2:/data
-
     command: >
       server
       http://minio1/data
@@ -45,7 +37,6 @@ services:
       http://minio3/data
       http://minio4/data
       --console-address ":9001"
-
     networks:
       - docker_network
 
@@ -53,14 +44,11 @@ services:
     container_name: minio3
     image: quay.io/minio/minio:latest
     restart: unless-stopped
-
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: secretsecret
-
     volumes:
       - ./minio3:/data
-
     command: >
       server
       http://minio1/data
@@ -68,7 +56,6 @@ services:
       http://minio3/data
       http://minio4/data
       --console-address ":9001"
-
     networks:
       - docker_network
 
@@ -76,14 +63,11 @@ services:
     container_name: minio4
     image: quay.io/minio/minio:latest
     restart: unless-stopped
-
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: secretsecret
-
     volumes:
       - ./minio4:/data
-
     command: >
       server
       http://minio1/data
@@ -91,7 +75,20 @@ services:
       http://minio3/data
       http://minio4/data
       --console-address ":9001"
+    networks:
+      - docker_network
 
+  jupyter-pandas:
+    container_name: jupyter-pandas
+    image: quay.io/jupyter/minimal-notebook:latest
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=secretsecret
+    volumes:
+      - ./jupyter:/home/jovyan/work # mounting the local jupyter directory to the container
     networks:
       - docker_network
 
